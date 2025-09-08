@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CasaMax 2030 | La Visión del Futuro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --cm-primary-dark: #1C355E;
+            --cm-primary-mid: #002887;
+            --cm-primary-light: #0052BF;
+            --cm-secondary-dark: #005A9B;
+            --cm-secondary-light: #0E72BD;
+            --cm-neutral-light: #EEEEEE;
+            --cm-neutral-white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--cm-primary-dark);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .bg-primary-dark { background-color: var(--cm-primary-dark); }
+        .bg-primary-mid { background-color: var(--cm-primary-mid); }
+        .bg-neutral-light { background-color: var(--cm-neutral-light); }
+
+        .text-primary-dark { color: var(--cm-primary-dark); }
+        .text-primary-light { color: var(--cm-primary-light); }
+        .text-secondary-dark { color: var(--cm-secondary-dark); }
+        .text-secondary-light { color: var(--cm-secondary-light); }
+
+        .btn-primary {
+            background-color: var(--cm-primary-mid);
+            color: var(--cm-neutral-white);
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--cm-primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--cm-primary-mid);
+            border: 1px solid var(--cm-primary-mid);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: var(--cm-primary-mid);
+            color: var(--cm-neutral-white);
+        }
+
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 37%;
+    left:-2.625rem; 
+    transform: translateY(-50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    background-color: var(--cm-neutral-white);
+    border: 3px solid var(--cm-primary-light);
+    z-index: 10;
+    }
+        
+        /* Interactive Map Styles */
+        #interactive-map .map-region {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        #interactive-map .map-region:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+        #interactive-map .map-region.active {
+            filter: drop-shadow(0 0 15px var(--cm-secondary-light));
+            stroke-width: 3;
+            stroke: var(--cm-secondary-light);
+        }
+    </style>
+</head>
+
+<body class="bg-neutral-white">
+
+    <!-- Header -->
+    <header id="header" class="bg-neutral-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-3xl font-bold text-primary-dark font-playfair">CasaMax <span class="text-primary-light">2030</span></a>
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="#portfolio" class="text-gray-600 hover:text-primary-light transition-colors">Portafolio</a>
+                <a href="#map-timeline" class="text-gray-600 hover:text-primary-light transition-colors">Mapa y Futuro</a>
+                <a href="#stories" class="text-gray-600 hover:text-primary-light transition-colors">Historias</a>
+                <a href="#how-we-did-it" class="text-gray-600 hover:text-primary-light transition-colors">Cómo lo logramos</a>
+                <a href="#before-after" class="text-gray-600 hover:text-primary-light transition-colors">Antes y Después</a>
+                <a href="#advisor" class="btn-primary px-5 py-2 rounded-full">Contactar Asesor</a>
+            </div>
+            <button id="mobile-menu-button" class="lg:hidden">
+                <i data-lucide="menu" class="text-primary-dark"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4 space-y-3">
+             <a href="#portfolio" class="block text-gray-600 hover:text-primary-light transition-colors">Portafolio</a>
+            <a href="#map-timeline" class="block text-gray-600 hover:text-primary-light transition-colors">Mapa y Futuro</a>
+            <a href="#stories" class="block text-gray-600 hover:text-primary-light transition-colors">Historias</a>
+            <a href="#how-we-did-it" class="block text-gray-600 hover:text-primary-light transition-colors">Cómo lo logramos</a>
+            <a href="#before-after" class="block text-gray-600 hover:text-primary-light transition-colors">Antes y Después</a>
+            <a href="#advisor" class="block btn-primary text-center mt-2 px-5 py-2 rounded-full">Contactar Asesor</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="relative min-h-screen flex items-center justify-center">
+    <div id="hero-bg" class="absolute inset-0 bg-cover bg-center"></div>
+    <div class="absolute inset-0 bg-gray-600/80"></div>
+
+    <div class="container mx-auto px-6 relative z-10 text-center text-white">
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 leading-tight">Creamos comunidades que inspiran bienestar y plusvalía.</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">En 2030, CasaMax es el referente en soluciones habitacionales en Costa Rica, combinando diseño, sostenibilidad e innovación para cada etapa de la vida.</p>
+        <a href="#portfolio" class="btn-primary px-8 py-4 rounded-full text-lg">Descubra su futuro hogar</a>
+    </div>
+    </section>
+        
+        <!-- KPIs Section -->
+        <section class="py-16 bg-neutral-white section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="p-8">
+                        <h2 class="text-5xl font-bold text-primary-light" data-counter-target="15000">15,000+</h2>
+                        <p class="mt-2 text-lg text-gray-600">Hogares entregados para 2030</p>
+                    </div>
+                    <div class="p-8">
+                        <h2 class="text-5xl font-bold text-primary-light" data-counter-target="12">12%+</h2>
+                        <p class="mt-2 text-lg text-gray-600">Crecimiento anual sostenido en ingresos</p>
+                    </div>
+                    <div class="p-8">
+                        <h2 class="text-5xl font-bold text-primary-light" data-counter-target="95">95%</h2>
+                        <p class="mt-2 text-lg text-gray-600">Satisfacción de cliente (CX Renovado)</p>
+                    </div>
+                </div>
+                 <div class="text-center mt-12">
+                    <a href="#before-after" class="btn-secondary px-8 py-3 rounded-full text-lg">¿Cómo llegamos aquí? Conozca la transformación</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-20 bg-neutral-light section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold">Nuestro Portafolio 2030</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Un ecosistema de soluciones habitacionales diseñado para el mercado costarricense del futuro.</p>
+                </div>
+
+                <div id="portfolio-data" class="space-y-16">
+                    <!-- Data will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mapa & Timeline Section -->
+        <section id="map-timeline" class="py-20 bg-neutral-white section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold">Nuestra Huella: 2025–2030</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Expansión estratégica para capturar oportunidades en las geografías de mayor potencial de Costa Rica.</p>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-12 items-center">
+                    <!-- Interactive Map -->
+                    <div class="w-full lg:w-1/2">
+                        <div id="interactive-map" class="relative">
+                            <svg viewBox="0 0 450 400" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Placeholder for Costa Rica map -->
+                                <path d="M100 10 C 250 -20, 250 180, 400 150 L 440 350 C 250 420, 200 250, 50 380 Z" fill="#e0e0e0" stroke="#a0a0a0" stroke-width="1"/>
+                                <!-- Regions -->
+                                <circle class="map-region" data-region="gam" cx="250" cy="200" r="50" fill="var(--cm-primary-dark)" opacity="0.7"/>
+                                <circle class="map-region" data-region="periferia" cx="150" cy="280" r="40" fill="var(--cm-primary-mid)" opacity="0.7"/>
+                                <circle class="map-region" data-region="costas" cx="350" cy="120" r="35" fill="var(--cm-primary-light)" opacity="0.7"/>
+                                <circle class="map-region" data-region="costas" cx="80" cy="100" r="30" fill="var(--cm-primary-light)" opacity="0.7"/>
+                                <text x="250" y="205" text-anchor="middle" fill="white" font-size="14" font-weight="bold" class="pointer-events-none">GAM</text>
+                                <text x="150" y="285" text-anchor="middle" fill="white" font-size="12" font-weight="bold" class="pointer-events-none">Periferia</text>
+                                <text x="350" y="125" text-anchor="middle" fill="white" font-size="12" font-weight="bold" class="pointer-events-none">Costas</text>
+                                <text x="80" y="105" text-anchor="middle" fill="white" font-size="12" font-weight="bold" class="pointer-events-none">Costas</text>
+                            </svg>
+                            <div id="map-tooltip" class="absolute hidden bg-white p-4 rounded-lg shadow-xl border text-sm max-w-xs"></div>
+                        </div>
+                    </div>
+                    <!-- Timeline & Details -->
+                    <div class="w-full lg:w-1/2">
+                         <div class="relative pl-8 border-l-2 border-primary-light/30">
+                             <div id="timeline-data">
+                                 <!-- Timeline items will be injected by JS -->
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resident Stories Section -->
+        <section id="stories" class="py-20 bg-neutral-light section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold">Historias que construimos juntos</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Conozca a los residentes que han encontrado su lugar ideal con CasaMax.</p>
+                </div>
+                <div id="stories-container" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Stories injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- How we did it Section -->
+        <section id="how-we-did-it" class="py-20 bg-neutral-white section-fade-in">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold">Cómo lo logramos: La Transformación</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Una evolución integral de nuestras capacidades para ejecutar a escala, con excelencia y agilidad.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Digital Core -->
+                    <div class="bg-neutral-light p-6 rounded-2xl">
+                        <div class="flex items-center text-primary-light mb-3">
+                            <i data-lucide="cpu" class="w-8 h-8 mr-3"></i>
+                            <h3 class="text-xl font-bold font-sans text-primary-dark">Núcleo Digital Integrado</h3>
+                        </div>
+                        <p class="text-gray-600">Implementamos un sistema nervioso central basado en PMO, ERP, BI, IA y la Nube para una gestión de proyectos sin precedentes.</p>
+                    </div>
+                    <!-- Vertical Integration -->
+                     <div class="bg-neutral-light p-6 rounded-2xl">
+                        <div class="flex items-center text-primary-light mb-3">
+                            <i data-lucide="link-2" class="w-8 h-8 mr-3"></i>
+                            <h3 class="text-xl font-bold font-sans text-primary-dark">Integración Vertical</h3>
+                        </div>
+                        <p class="text-gray-600">Optimizamos la cadena de suministro con alianzas y control sobre materiales y mobiliario fijo, asegurando calidad y costos.</p>
+                    </div>
+                    <!-- Financial Engineering -->
+                     <div class="bg-neutral-light p-6 rounded-2xl">
+                        <div class="flex items-center text-primary-light mb-3">
+                             <i data-lucide="landmark" class="w-8 h-8 mr-3"></i>
+                            <h3 class="text-xl font-bold font-sans text-primary-dark">Ingeniería Financiera</h3>
+                        </div>
+                        <p class="text-gray-600">A través de SPVs y Joint Ventures, financiamos un crecimiento acelerado sin comprometer la liquidez ni los dividendos.</p>
+                    </div>
+                     <!-- Talent Management -->
+                    <div class="bg-neutral-light p-6 rounded-2xl">
+                        <div class="flex items-center text-primary-light mb-3">
+                             <i data-lucide="users" class="w-8 h-8 mr-3"></i>
+                            <h3 class="text-xl font-bold font-sans text-primary-dark">Gestión de Talento</h3>
+                        </div>
+                        <p class="text-gray-600">Atrajimos y desarrollamos el mejor talento, creando una cultura de alto desempeño, innovación y gestión del conocimiento.</p>
+                    </div>
+                    <!-- Customer Experience -->
+                    <div class="bg-neutral-light p-6 rounded-2xl">
+                        <div class="flex items-center text-primary-light mb-3">
+                             <i data-lucide="heart-handshake" class="w-8 h-8 mr-3"></i>
+                            <h3 class="text-xl font-bold font-sans text-primary-dark">Experiencia de Cliente A+</h3>
+                        </div>
+                        <p class="text-gray-600">Rediseñamos el viaje del cliente con procesos transparentes, acompañamiento proactivo y servicios posventa de primer nivel.</p>
+                    </div>
+                     <!-- ESG Commitment -->
+                    <div class="bg-neutral-light p-6 rounded-2xl">
+                        <div class="flex items-center text-primary-light mb-3">
+                            <i data-lucide="leaf" class="w-8 h-8 mr-3"></i>
+                            <h3 class="text-xl font-bold font-sans text-primary-dark">Compromiso ESG</h3>
+                        </div>
+                        <p class="text-gray-600">Integramos la triple línea de base en cada decisión, construyendo comunidades sostenibles y resilientes para el futuro.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Before & After Section -->
+        <section id="before-after" class="py-20 bg-neutral-light section-fade-in">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold">El Salto Estratégico: 2025 vs. 2030</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">De una operación tradicional a un líder de mercado ágil, diversificado y digitalizado.</p>
+                </div>
+                <div id="comparison-container" class="space-y-8">
+                    <!-- Comparison blocks injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Advisor Section -->
+        <section id="advisor" class="py-20 bg-primary-dark text-white section-fade-in">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-4xl md:text-5xl font-bold">Encuentre su asesor ideal</h2>
+                 <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">Nuestro equipo de expertos está listo para guiarlo en cada paso hacia su nuevo hogar.</p>
+                 <div class="mt-10 max-w-4xl mx-auto bg-white/10 p-8 rounded-2xl">
+                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                         <div>
+                             <label class="block text-left mb-2 text-gray-300">Zona de interés</label>
+                             <select class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-secondary-light">
+                                 <option>GAM</option>
+                                 <option>Periferia</option>
+                                 <option>Costas</option>
+                             </select>
+                         </div>
+                         <div>
+                             <label class="block text-left mb-2 text-gray-300">Tipo de proyecto</label>
+                             <select class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-secondary-light">
+                                 <option>Townhouse</option>
+                                 <option>Vertical Premium</option>
+                                 <option>Eco-lujo</option>
+                                 <option>Comunidad Senior</option>
+                             </select>
+                         </div>
+                         <div>
+                             <label class="block text-left mb-2 text-gray-300">Segmento</label>
+                             <select class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-secondary-light">
+                                 <option>Familia Joven</option>
+                                 <option>Profesional</option>
+                                 <option>Adulto Mayor</option>
+                             </select>
+                         </div>
+                     </div>
+                     <div class="mt-8">
+                         <button class="btn-primary w-full md:w-auto px-10 py-4 text-lg rounded-full bg-secondary-light hover:bg-secondary-dark">Contactar ahora</button>
+                         <p class="mt-4 text-sm text-gray-400">O contáctenos por <a href="#" class="underline">WhatsApp</a>.</p>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- FAQ & Reviews Section -->
+        <section id="faq" class="py-20 bg-neutral-white section-fade-in">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold">Preguntas Frecuentes</h2>
+                </div>
+                <div class="max-w-4xl mx-auto" id="faq-container">
+                    <!-- FAQs injected by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-neutral-light">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold font-playfair text-white">CasaMax <span class="text-primary-light">2030</span></h3>
+                    <p class="mt-2 text-gray-400 text-sm">Construyendo el futuro de la vivienda en Costa Rica.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white">Navegación</h4>
+                    <ul class="mt-4 space-y-2 text-gray-400">
+                        <li><a href="#portfolio" class="hover:text-white">Portafolio</a></li>
+                        <li><a href="#map-timeline" class="hover:text-white">Mapa</a></li>
+                        <li><a href="#stories" class="hover:text-white">Historias</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h4 class="font-semibold text-white">Compañía</h4>
+                    <ul class="mt-4 space-y-2 text-gray-400">
+                        <li><a href="#how-we-did-it" class="hover:text-white">Nuestra Estrategia</a></li>
+                        <li><a href="#advisor" class="hover:text-white">Asesores</a></li>
+                        <li><a href="#faq" class="hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h4 class="font-semibold text-white">Síganos</h4>
+                    <div class="flex mt-4 space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-gray-500 text-sm">
+                <p>&copy; 2030 CasaMax Inmobiliaria. Todos los derechos reservados.</p>
+                <p>Este es un micrositio de simulación estratégica con fines ilustrativos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- DATA OBJECTS (Simulating JSON files) ---
+        const siteData = {
+            hero: { image: "1kP7H44HdJsN9WzPS-10fnh55htmKFHOc" }, // ID de Drive o URL
+            portfolio: {
+                core: {
+                    title: "Motor Core: Eficiencia y Escala",
+                    description: "La base de nuestro liderazgo de mercado, optimizada para los segmentos de mayor demanda con procesos estandarizados y alta rotación.",
+                    projects: [
+                        { name: "Townhouses", desc: "Soluciones familiares en comunidades seguras y bien ubicadas, ideales para la vida moderna.", segment: "Familia Joven, Clase Media",image: "1GPINvJo6VwkOQ2rWq38Bpzif1ED9T_27"},
+                        { name: "Vertical Accesible", desc: "Apartamentos con diseño inteligente y amenidades completas, acercando la vida urbana a jóvenes profesionales.", segment: "Gen Z, Jóvenes Profesionales", image:"1HFm5JZF71f2griE5gc64mogQX_NZAj-R" },
+                        { name: "Condominios Horizontales", desc: "La comodidad de una casa con los beneficios de un condominio, enfocado en familias que buscan espacio y comunidad.", segment: "Familias, Clase Media-Alta",image:"196WLPPv__UwBm4X5my-m5ZJG5S8HFST_" },
+                        { name: "Paper Lots+", desc: "Lotes listos para construir con diseños pre-aprobados, ofreciendo flexibilidad y acelerando la construcción.", segment: "Inversionistas, Familias",image:"1wppCPuLCJW0ZBqbrPwzbYA-zktLzTfPE" },
+                        { name: "Lotes con Servicios", desc: "Infraestructura de primer nivel en ubicaciones estratégicas para que nuestros clientes construyan su sueño.", segment: "Todos los segmentos",image:"1mP_jtuRcoPIZUrjYlWcpFqEc-XOaMrWm" }
+                    ]
+                },
+                expansion: {
+                    title: "Motor de Expansión: Innovación y Nuevos Nichos",
+                    description: "Nuestra apuesta por el futuro: diversificación de productos, geografías y modelos de ingreso para capturar las tendencias emergentes.",
+                    projects: [
+                        { name: "Uso Mixto Ligero", desc: "Comunidades vibrantes que integran vivienda, comercio y servicios para un estilo de vida conectado.", segment: "Jóvenes Profesionales, Millenials",image:"1qGm0yHsm7qqDFpPVAHoAobbxIPzIDM3B" },
+                        { name: "Build-to-Rent", desc: "Proyectos diseñados para el mercado de alquiler, generando ingresos recurrentes y estables.", segment: "Inversionistas, Institucionales",image:"1yGzMIh2VIiFOCMz2Gy5dZ086-mqGg-5u" },
+                        { name: "Vertical Premium", desc: "Lujo, diseño y vistas espectaculares en las mejores ubicaciones para un público exigente.", segment: "HNWI, Extranjeros",image:"1oS2v6xDeA7Ih8BPikv9zjn5tGmY9rQcr" },
+                        { name: "Comunidades Senior-Friendly", desc: "Viviendas accesibles y seguras con servicios de bienestar, pensadas para la plenitud en la edad de oro.", segment: "Adultos Mayores, Retirados",image:"1uTsNugO2MOtKZhpJrDesQap-hMGZhm6W" },
+                        { name: "Eco-lujo (Costa y Periurbano)", desc: "Exclusividad y sostenibilidad en entornos naturales únicos, redefiniendo el concepto de segunda vivienda.", segment: "HNWI, Extranjeros",image:"1RcGQ7meReq6dVC6Mul4SPOzsIp4h0USp" },
+                        { name: "Servicios Complementarios", desc: "Desde gestión de propiedades hasta paquetes de acabados, agregamos valor en cada etapa.", segment: "Todos los clientes",image: "1YDfi1RZwB5YMdWIcaPk1-Iy-iGz77kbX"}
+                    ]
+                }
+            },
+            timeline: [
+                 { year: "2025-2026", title: "Cimientos y Digitalización", desc: "Lanzamiento de PMO, ERP y BI. Estandarización de procesos y enfoque en la gestión del talento. Primeros proyectos de Expansión en GAM.", region: "gam" },
+                { year: "2027-2028", title: "Aceleración y Expansión Geográfica", desc: "Consolidación del portafolio Core y expansión a la periferia. Lanzamiento de comunidades Senior-Friendly y proyectos Build-to-Rent.", region: "periferia" },
+                { year: "2029-2030", title: "Liderazgo y Diversificación", desc: "Entrada fuerte en mercados de costa con Eco-lujo y Vertical Premium. Consolidación de servicios complementarios y liderazgo en CX.", region: "costas" },
+            ],
+            mapRegions: {
+                gam: { title: "Gran Área Metropolitana (GAM)", desc: "Nuestro mercado principal, consolidando el liderazgo con proyectos Core y de Uso Mixto. Foco en conectividad y servicios." },
+                periferia: { title: "Periferia y Ciudades Secundarias", desc: "Crecimiento estratégico en zonas de alta demanda, ofreciendo soluciones accesibles y comunidades planificadas." },
+                costas: { title: "Costas (Pacífico y Caribe)", desc: "Capturamos el mercado de segunda vivienda y turismo con proyectos de Eco-lujo y Vertical Premium, enfocados en sostenibilidad y exclusividad." }
+            },
+            stories: [
+                {
+                    archetype: "Familia Joven",
+                    name: "Familia Rojas",
+                    quote: "Encontramos más que una casa; encontramos una comunidad para ver crecer a nuestros hijos.",
+                    story: "Somos Ana y Carlos. Con dos niños pequeños, buscábamos seguridad, espacios verdes y buenos vecinos. En nuestro townhouse en un condominio de CasaMax en Heredia, lo encontramos todo. El diseño es moderno y funcional, y las amenidades como el parque y la piscina son el centro de nuestra vida social. La cercanía al trabajo y a las escuelas nos simplificó la vida. CasaMax entendió perfectamente nuestras necesidades como familia joven.",
+                    chips: ["Comunidad Segura", "Diseño Funcional", "Amenidades Familiares"],
+                    image: "https://placehold.co/600x400/0052BF/FFFFFF?text=Familia+Rojas"
+                },
+                {
+                    archetype: "Profesional Extranjero",
+                    name: "Elena Schmidt",
+                    quote: "La combinación de lujo, naturaleza y conveniencia es simplemente perfecta para mi estilo de vida.",
+                    story: "Como consultora global, necesitaba un hogar que fuera un santuario y a la vez estuviera conectado con el mundo. Mi apartamento en el proyecto Vertical Premium de CasaMax en Santa Ana es exactamente eso. La vista a las montañas es espectacular, el diseño es impecable y la sostenibilidad fue un factor clave. Tener un espacio de co-working y un gimnasio en el edificio me permite mantener mi rutina. Es el lujo moderno y consciente que buscaba en Costa Rica.",
+                    chips: ["Lujo Sostenible", "Ubicación Estratégica", "Estilo de Vida Global"],
+                    image: "https://placehold.co/600x400/0E72BD/FFFFFF?text=Elena+Schmidt"
+                },
+                {
+                    archetype: "Adulto Mayor",
+                    name: "Don Manuel y Doña Carmen",
+                    quote: "Vivimos nuestra jubilación con la tranquilidad y comodidad que siempre soñamos.",
+                    story: "Después de toda una vida de trabajo, queríamos un lugar tranquilo, seguro y sin complicaciones. Nuestra casa de una planta en la comunidad senior-friendly de CasaMax en Alajuela es un sueño. Todo está pensado para la accesibilidad, desde las duchas sin barreras hasta las rampas suaves. Contratamos servicios de jardinería y mantenimiento a través de CasaMax, lo que nos da total libertad. Aquí, nos dedicamos a disfrutar, no a preocuparnos.",
+                    chips: ["Accesibilidad Universal", "Servicios Integrados", "Tranquilidad y Seguridad"],
+                    image: "https://placehold.co/600x400/002887/FFFFFF?text=Los+Jimenez"
+                }
+            ],
+            comparison: [
+                {
+                    category: "Mercado y Cliente",
+                    question: "¿Dónde y para quién jugamos?",
+                    before: "GAM y family-centric. Foco en clase media–media alta; baja penetración en otros segmentos; mínima presencia en periferia y costas.",
+                    after: "Cobertura selectiva + segmentación ampliada. GAM–periferia–costas y propuestas por segmento: Gen Z, jóvenes profesionales, adultos mayores, extranjeros adinerados."
+                },
+                {
+                    category: "Portafolio & Modelo de Ingresos",
+                    question: "¿Qué ofrecemos y cómo ganamos?",
+                    before: "Concentración en horizontales. Rotación dependiente de preventa tradicional; servicios e ingresos recurrentes incipientes.",
+                    after: "Portafolio de dos motores. Core (Townhouses, Vertical accesible, etc.) y Expansión (Uso mixto, Build-to-rent, Eco-lujo, Servicios)."
+                },
+                {
+                    category: "Sistema Operativo & Capacidades",
+                    question: "¿Cómo ejecutamos a escala?",
+                    before: "Procesos manuales y baja estandarización. Rezago digital; dependencia de líderes; CX irregular.",
+                    after: "PMO + ERP + BI + IA + Nube. Estandarización de diseño/obra, integración de abastecimiento y renovación del CX."
+                },
+                {
+                    category: "Capital",
+                    question: "¿Cómo financiamos y cuidamos el crecimiento?",
+                    before: "Liquidez limitada y exposición a giro del mercado. Calendario de obra y dividendos presionan caja; fondeo simple.",
+                    after: "SPV, ingeniería financiera y crecimiento de ingresos y rentabilidad ≥ 12% anual permite sostener dividendos sin frenar expansión."
+                }
+            ],
+            faqs: [
+                { q: "¿Qué es el portafolio de dos motores?", a: "Es nuestra estrategia para balancear la estabilidad y la innovación. El motor 'Core' se enfoca en productos de alta rotación y eficiencia, mientras que el motor de 'Expansión' explora nuevos nichos de mercado y modelos de negocio para asegurar el crecimiento futuro." },
+                { q: "¿Cómo garantiza CasaMax la calidad en tantos proyectos diversos?", a: "A través de nuestro sistema operativo digitalizado (PMO, ERP, BIM) y la estandarización de procesos clave. Esto nos permite mantener los más altos estándares de calidad, desde un townhouse accesible hasta una villa de eco-lujo, de manera consistente." },
+                { q: "¿Qué significa el compromiso ESG en la práctica?", a: "Significa que cada proyecto se diseña considerando su impacto ambiental, social y de gobernanza. Usamos materiales sostenibles, diseñamos para la resiliencia climática, creamos comunidades inclusivas y operamos con la máxima transparencia." },
+                { q: "¿Puedo invertir en un proyecto de CasaMax?", a: "Sí. Nuestro modelo financiero a través de SPVs (Special Purpose Vehicles) y Joint Ventures abre oportunidades de inversión en proyectos específicos. Contacte a nuestro equipo de desarrollo de negocios para más información." }
+            ]
+        };
+        function resolveImage(src) {
+            const placeholder = 'https://placehold.co/960x640/EEEEEE/1C355E';
+            if (!src) return placeholder;
+            const m = String(src).match(/(?:\/d\/|[?&]id=)([a-zA-Z0-9_-]{10,})/);
+            const id = m ? m[1] : src;
+            // Si es un ID de Google Drive, construye la URL embebible
+           return `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
+        }
+        // --- RENDER FUNCTIONS ---
+        
+        function renderPortfolio() {
+            const container = document.getElementById('portfolio-data');
+            container.innerHTML = '';
+            const { core, expansion } = siteData.portfolio;
+
+            [core, expansion].forEach(motor => {
+                const motorHtml = `
+                    <div class="section-fade-in">
+                        <div class="text-center lg:text-left mb-8">
+                            <h3 class="text-3xl font-bold">${motor.title}</h3>
+                            <p class="mt-2 text-gray-600 max-w-3xl mx-auto lg:mx-0">${motor.description}</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${motor.projects.map(p => `
+                                <div class="bg-neutral-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                                    <img src="${resolveImage(p.image)}"
+                                        alt="Imagen de ${p.name}"
+                                        class="w-full aspect-[3/2] object-cover"
+                                        loading="lazy">
+                                    <div class="p-6">
+                                        <h3 class="text-2xl font-bold leading-tight text-primary-dark">${p.name}</h3>
+                                        <p class="text-sm text-secondary-dark font-semibold mt-1">${p.segment}</p>
+                                        <p class="text-gray-600 mt-3 text-sm">${p.desc}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += motorHtml;
+            });
+        }
+        
+        function renderTimeline() {
+            const container = document.getElementById('timeline-data');
+            container.innerHTML = siteData.timeline.map(item => `
+                <div class="mb-10 relative timeline-item section-fade-in" data-region="${item.region}">
+                    <p class="text-sm font-semibold text-primary-light">${item.year}</p>
+                    <h4 class="text-xl font-bold text-primary-dark mt-1">${item.title}</h4>
+                    <p class="text-gray-600 mt-2">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+        
+        function renderStories() {
+            const container = document.getElementById('stories-container');
+            container.innerHTML = siteData.stories.map(story => `
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col section-fade-in">
+                     <img src="${story.image}" alt="Foto de ${story.name}" class="w-full h-56 object-cover">
+                    <div class="p-8 flex flex-col flex-grow">
+                        <p class="text-secondary-dark font-style: italic text-xl">"${story.quote}"</p>
+                        <h4 class="text-lg font-bold mt-4">${story.name}</h4>
+                        <p class="text-sm text-gray-500">${story.archetype}</p>
+                        <p class="text-gray-600 mt-4 flex-grow">${story.story}</p>
+                         <div class="mt-6 flex flex-wrap gap-2">
+                            ${story.chips.map(chip => `<span class="bg-primary-light/10 text-primary-dark text-xs font-semibold px-3 py-1 rounded-full">${chip}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderComparison() {
+            const container = document.getElementById('comparison-container');
+            container.innerHTML = siteData.comparison.map(item => `
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden section-fade-in">
+                    <div class="p-6 bg-primary-dark text-white">
+                        <h3 class="text-2xl font-bold font-sans">${item.category}</h3>
+                        <p class="text-primary-light/80 italic mt-1">${item.question}</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200">
+                        <div class="p-6 bg-white">
+                            <h4 class="font-bold text-lg text-gray-500 mb-2">HOY (2024)</h4>
+                            <p class="text-gray-700">${item.before}</p>
+                        </div>
+                        <div class="p-6 bg-primary-light/5">
+                            <h4 class="font-bold text-lg text-primary-dark mb-2">FUTURO (2030)</h4>
+                            <p class="text-primary-dark">${item.after}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderFaqs() {
+            const container = document.getElementById('faq-container');
+            container.innerHTML = siteData.faqs.map((faq, index) => `
+                <div class="border-b border-gray-200 section-fade-in" x-data="{ open: ${index === 0} }">
+                    <button @click="open = !open" class="w-full text-left flex justify-between items-center py-5">
+                        <span class="text-lg font-semibold text-primary-dark">${faq.q}</span>
+                        <i data-lucide="chevron-down" class="transform transition-transform" :class="{ 'rotate-180': open }"></i>
+                    </button>
+                    <div x-show="open" x-transition class="pb-5 text-gray-600">
+                        <p>${faq.a}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+
+        // --- EVENT LISTENERS & INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            const hero = document.getElementById('hero-bg');
+            if (hero && siteData.hero?.image) {
+                hero.style.backgroundImage = `url('${resolveImage(siteData.hero.image)}')`;
+            }
+            // Render dynamic content
+            renderPortfolio();
+            renderTimeline();
+            renderStories();
+            renderComparison();
+            renderFaqs();
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // KPI Counters
+            const counters = document.querySelectorAll('[data-counter-target]');
+            const animateCounter = (el) => {
+                const target = +el.dataset.counterTarget;
+                let count = 0;
+                const duration = 2000;
+                const stepTime = Math.abs(Math.floor(duration / target));
+
+                const timer = setInterval(() => {
+                    count += Math.ceil(target / (duration / 16));
+                    if (count >= target) {
+                        count = target;
+                        clearInterval(timer);
+                    }
+                    el.innerText = Math.floor(count).toLocaleString('es-CR') + (el.innerText.includes('+') ? '+' : '');
+                }, 16);
+            };
+
+            // Scroll animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        if (entry.target.hasAttribute('data-counter-target')) {
+                            animateCounter(entry.target);
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section-fade-in, [data-counter-target]').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Map interaction
+            const mapRegions = document.querySelectorAll('#interactive-map .map-region');
+            const mapTooltip = document.getElementById('map-tooltip');
+            const timelineItems = document.querySelectorAll('#timeline-data .timeline-item');
+
+            mapRegions.forEach(region => {
+                const regionId = region.dataset.region;
+                const regionData = siteData.mapRegions[regionId];
+
+                region.addEventListener('mouseenter', (e) => {
+                    mapTooltip.innerHTML = `
+                        <h5 class="font-bold text-primary-dark">${regionData.title}</h5>
+                        <p class="mt-1">${regionData.desc}</p>
+                    `;
+                    mapTooltip.classList.remove('hidden');
+                });
+                
+                region.addEventListener('mousemove', (e) => {
+                    // Position tooltip relative to the map container
+                    const mapRect = document.getElementById('interactive-map').getBoundingClientRect();
+                    let x = e.clientX - mapRect.left + 20;
+                    let y = e.clientY - mapRect.top - 10;
+                    mapTooltip.style.left = `${x}px`;
+                    mapTooltip.style.top = `${y}px`;
+                });
+
+                region.addEventListener('mouseleave', () => {
+                    mapTooltip.classList.add('hidden');
+                });
+
+                region.addEventListener('click', () => {
+                    mapRegions.forEach(r => r.classList.remove('active'));
+                    region.classList.add('active');
+                    timelineItems.forEach(item => {
+                        if (item.dataset.region === regionId) {
+                            item.style.opacity = '1';
+                        } else {
+                            item.style.opacity = '0.3';
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+     <!-- AlpineJS for simple interactions like FAQ accordions -->
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+
+</html>
